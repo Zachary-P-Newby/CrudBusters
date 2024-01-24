@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://csaq0kbjvsun6"]
+
+[ext_resource type="Texture2D" uid="uid://knnqkshsrmy2" path="res://Enemies/crud1.png" id="1_kcngm"]
+[ext_resource type="Script" path="res://Enemies/large_crud.gd" id="1_y7w3f"]
+[ext_resource type="Script" path="res://Components/Health.gd" id="2_1r60j"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="5_o4oms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emdsu"]
+size = Vector2(144, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpcrg"]
+size = Vector2(160, 160)
+
+[node name="LargeCrud" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_y7w3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_emdsu")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_1r60j")
+maxHealth = 4
+initialHealth = 4
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("5_o4oms")
+screenWrapMargin = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.0842e-19, 0)
+scale = Vector2(1.36752, 1.36752)
+texture = ExtResource("1_kcngm")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_gpcrg")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

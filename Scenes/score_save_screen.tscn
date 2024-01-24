@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4bbuvjev5k5t"]
+
+[ext_resource type="Script" path="res://Scenes/score_save_screen.gd" id="1_aeyub"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://Images/crudBustersTestFloor.jpg" id="1_ktpya"]
+
+[node name="ScoreSaveScreen" type="Node2D"]
+script = ExtResource("1_aeyub")
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+self_modulate = Color(0.717647, 0.717647, 0.717647, 1)
+position = Vector2(652, 348)
+scale = Vector2(0.679167, 0.688889)
+texture = ExtResource("1_ktpya")
+
+[node name="UIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ScoreDisplay" type="PanelContainer" parent="UIRoot"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 128.0
+offset_right = 896.0
+offset_bottom = 192.0
+
+[node name="scoreLabel" type="Label" parent="UIRoot/ScoreDisplay"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="EnterName" type="PanelContainer" parent="UIRoot"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 896.0
+offset_bottom = 320.0
+
+[node name="Label" type="Label" parent="UIRoot/EnterName"]
+layout_mode = 2
+text = "Enter your name: (8 characters max)"
+horizontal_alignment = 1
+
+[node name="SaveScoreButton" type="Button" parent="UIRoot"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 512.0
+offset_right = 768.0
+offset_bottom = 576.0
+text = "Save Score"
+
+[node name="LineEdit" type="LineEdit" parent="UIRoot"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 416.0
+offset_right = 768.0
+offset_bottom = 480.0
+theme_override_font_sizes/font_size = 40
+max_length = 8
+
+[connection signal="pressed" from="UIRoot/SaveScoreButton" to="." method="_on_save_score_button_pressed"]
+[connection signal="text_changed" from="UIRoot/LineEdit" to="." method="_on_line_edit_text_changed"]

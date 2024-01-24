@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp7g3krhis3qv"]
+
+[ext_resource type="Script" path="res://Scenes/high_scores.gd" id="1_svjri"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://Images/crudBustersTestFloor.jpg" id="1_v78s6"]
+[ext_resource type="Theme" uid="uid://cer1dn0dk6lsb" path="res://Components/HighScoresTheme.tres" id="3_vii8h"]
+
+[node name="HighScores" type="Node2D"]
+script = ExtResource("1_svjri")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(672, 360)
+texture = ExtResource("1_v78s6")
+
+[node name="UIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="BackButton" type="Button" parent="UIRoot"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 584.0
+offset_right = 256.0
+offset_bottom = 640.0
+text = "Back"
+
+[node name="HeaderPanel" type="Panel" parent="UIRoot"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 64.0
+offset_right = 960.0
+offset_bottom = 128.0
+
+[node name="HeaderLabel" type="Label" parent="UIRoot/HeaderPanel"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "High Scores:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighScoresContainer" type="VBoxContainer" parent="UIRoot"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 256.0
+offset_right = 896.0
+offset_bottom = 640.0
+theme = ExtResource("3_vii8h")
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="1stPlaceContainer" type="PanelContainer" parent="UIRoot/HighScoresContainer"]
+layout_mode = 2
+
+[node name="1stPlaceLabel" type="Label" parent="UIRoot/HighScoresContainer/1stPlaceContainer"]
+layout_mode = 2
+theme = ExtResource("3_vii8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2ndPlaceContainer" type="PanelContainer" parent="UIRoot/HighScoresContainer"]
+layout_mode = 2
+
+[node name="2ndPlaceLabel" type="Label" parent="UIRoot/HighScoresContainer/2ndPlaceContainer"]
+layout_mode = 2
+theme = ExtResource("3_vii8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3rdPlaceContainer" type="PanelContainer" parent="UIRoot/HighScoresContainer"]
+layout_mode = 2
+
+[node name="3rdPlaceLabel" type="Label" parent="UIRoot/HighScoresContainer/3rdPlaceContainer"]
+layout_mode = 2
+theme = ExtResource("3_vii8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4thPlaceContainer" type="PanelContainer" parent="UIRoot/HighScoresContainer"]
+layout_mode = 2
+
+[node name="4thPlaceLabel" type="Label" parent="UIRoot/HighScoresContainer/4thPlaceContainer"]
+layout_mode = 2
+theme = ExtResource("3_vii8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5thPlaceContainer" type="PanelContainer" parent="UIRoot/HighScoresContainer"]
+layout_mode = 2
+
+[node name="5thPlaceLabel" type="Label" parent="UIRoot/HighScoresContainer/5thPlaceContainer"]
+layout_mode = 2
+theme = ExtResource("3_vii8h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="UIRoot/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://2r0re8u65jio"]
+
+[ext_resource type="Script" path="res://Enemies/slime_monster.gd" id="1_63h70"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="1_ojnnr"]
+[ext_resource type="Texture2D" uid="uid://fegl1it3anyc" path="res://Enemies/SlimeMon.png" id="2_s32ua"]
+[ext_resource type="Script" path="res://Components/Health.gd" id="3_n1wcx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cgp8"]
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffkxh"]
+radius = 88.0
+
+[node name="SlimeMonster" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_63h70")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_s32ua")
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("1_ojnnr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7cgp8")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_n1wcx")
+maxHealth = 5
+initialHealth = 5
+
+[node name="ShotTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="SlimeballSpawn" type="Marker2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_ffkxh")
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

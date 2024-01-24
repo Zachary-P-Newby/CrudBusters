@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://uamxr47sdlge"]
+
+[ext_resource type="Script" path="res://Player/WaterTank.gd" id="1_c6bty"]
+[ext_resource type="Texture2D" uid="uid://dc5n4nmlpr5g3" path="res://Player/WaterTank.png" id="2_iji5p"]
+[ext_resource type="PackedScene" uid="uid://25ap1l0sefx2" path="res://Components/Health.tscn" id="3_4d10e"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="5_fhh4v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exc3r"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_41idf"]
+radius = 40.0
+
+[node name="WaterTank" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+safe_margin = 1.0
+script = ExtResource("1_c6bty")
+rotationSpeed = 5.0
+speed = 350
+slowdown = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -9.53674e-07)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_iji5p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_exc3r")
+
+[node name="Health" parent="." instance=ExtResource("3_4d10e")]
+maxHealth = 3
+initialHealth = 3
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, 40)
+
+[node name="BubbleShotTrajectory" type="Marker2D" parent="."]
+position = Vector2(0, 80)
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("5_fhh4v")
+screenWrapMargin = 12
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_41idf")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

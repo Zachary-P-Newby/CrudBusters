@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3ajx2fhsxu62"]
+
+[ext_resource type="Script" path="res://Projectiles/SlimeBall.gd" id="1_8e4pf"]
+[ext_resource type="Texture2D" uid="uid://p40gvrfs22ru" path="res://Enemies/slime1.png" id="2_047sb"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="3_ejmlq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spe27"]
+radius = 16.0
+
+[node name="SlimeBall" type="CharacterBody2D"]
+collision_layer = 4
+motion_mode = 1
+script = ExtResource("1_8e4pf")
+lifespanSeconds = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_047sb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_spe27")
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("3_ejmlq")
+
+[node name="Timer" type="Timer" parent="."]

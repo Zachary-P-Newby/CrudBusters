@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://1e174krv2wfd"]
+
+[ext_resource type="Script" path="res://Projectiles/BubbleShot.gd" id="1_5fh6c"]
+[ext_resource type="Texture2D" uid="uid://c56la07n5b8le" path="res://Player/bubble.png" id="2_3okdm"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="3_gi1tf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtf2b"]
+radius = 16.0
+
+[node name="BubbleShot" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_5fh6c")
+damage = 1.0
+speed = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mtf2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 4.76837e-07)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_3okdm")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("3_gi1tf")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

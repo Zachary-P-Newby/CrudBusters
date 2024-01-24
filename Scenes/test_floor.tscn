@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://vp4v1v1ppa1g"]
+
+[ext_resource type="Script" path="res://Scenes/test_floor.gd" id="1_lxumc"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://Images/crudBustersTestFloor.jpg" id="1_q3nfe"]
+[ext_resource type="PackedScene" uid="uid://uamxr47sdlge" path="res://Player/WaterTank.tscn" id="2_m3nwe"]
+[ext_resource type="PackedScene" uid="uid://2r0re8u65jio" path="res://Enemies/slime_monster.tscn" id="4_2legs"]
+[ext_resource type="PackedScene" uid="uid://ds685omix0oss" path="res://Enemies/small_crud.tscn" id="5_a6ahg"]
+
+[sub_resource type="Curve2D" id="Curve2D_7gutm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 664, 0, 0, 0, 0, 112, 376, 0, 0, 0, 0, 144, 280, 0, 0, 0, 0, 208, 216, 0, 0, 0, 0, 344, 128, 0, 0, 0, 0, 528, 88, 0, 0, 0, 0, 664, 88, 0, 0, 0, 0, 792, 128, 0, 0, 0, 0, 936, 216, 0, 0, 0, 0, 1032, 304, 0, 0, 0, 0, 1048, 416, 0, 0, 0, 0, 1016, 528, 0, 0, 0, 0, 936, 568, 0, 0, 0, 0, 888, 640, 0, 0, 0, 0, 824, 736, 0, 0, 0, 0, 512, 712, 0, 0, 0, 0, 328, 648, 0, 0, 0, 0, 232, 608, 0, 0, 0, 0, 216, 568, 0, 0, 0, 0, 208, 488, 0, 0, 0, 0, 240, 424, 0, 0, 0, 0, 304, 320, 0, 0, 0, 0, 416, 264, 0, 0, 0, 0, 552, 240, 0, 0, 0, 0, 696, 192, 0, 0, 0, 0, 872, 112, 0, 0, 0, 0, 1088, -16)
+}
+point_count = 27
+
+[node name="TestFloor" type="Node2D"]
+script = ExtResource("1_lxumc")
+pathSpeed = 100.0
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="BGLayer" type="ParallaxLayer" parent="Background"]
+
+[node name="Backdrop" type="Sprite2D" parent="Background/BGLayer"]
+position = Vector2(576, 324)
+texture = ExtResource("1_q3nfe")
+
+[node name="Player" type="Node" parent="."]
+
+[node name="WaterTank" parent="Player" instance=ExtResource("2_m3nwe")]
+position = Vector2(552, 360)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Enemies"]
+curve = SubResource("Curve2D_7gutm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D"]
+position = Vector2(64, 664)
+rotation = -1.40565
+
+[node name="SlimeMonster" parent="Enemies/Path2D/PathFollow2D" instance=ExtResource("4_2legs")]
+rotation = 1.5708
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 224.0
+offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+text = "Health:"
+
+[node name="SmallCrud" parent="." instance=ExtResource("5_a6ahg")]
+position = Vector2(520, 544)

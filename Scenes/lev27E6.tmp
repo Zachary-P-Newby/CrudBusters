@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxogcekemebj1"]
+
+[ext_resource type="Script" path="res://levels/level_classic.gd" id="1_b52wi"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://crudBustersTestFloor.jpg" id="1_y8ayr"]
+[ext_resource type="PackedScene" uid="uid://uamxr47sdlge" path="res://Player/WaterTank.tscn" id="2_qiuac"]
+[ext_resource type="Texture2D" uid="uid://dc5n4nmlpr5g3" path="res://Player/WaterTank.png" id="4_s4lt1"]
+
+[sub_resource type="Curve2D" id="Curve2D_fdb36"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 56, 832, 0, 0, 0, 0, 72, 704, 0, 0, 0, 0, 88, 648, 0, 0, 0, 0, 120, 616, 0, 0, 0, 0, 168, 576, 0, 0, 0, 0, 232, 544, 0, 0, 0, 0, 304, 528, 0, 0, 0, 0, 392, 528, 0, 0, 0, 0, 840, 528, 0, 0, 0, 0, 952, 488, 0, 0, 0, 0, 1032, 416, 0, 0, 0, 0, 1128, 360, 0, 0, 0, 0, 1176, 296, 0, 0, 0, 0, 1192, 248, 0, 0, 0, 0, 1160, 184, 0, 0, 0, 0, 1048, 144, 0, 0, 0, 0, 984, 88, 0, 0, 0, 0, 944, 16, 0, 0, 0, 0, 856, -88, 0, 0, 0, 0, 184, -88, 0, 0, 0, 0, 157.37, -57.1826, 0, 0, 0, 0, 136, 8, 0, 0, 0, 0, 128, 96, 0, 0, 0, 0, 128, 224, 0, 0, 0, 0, 144, 304, 0, 0, 0, 0, 168, 352, 0, 0, 0, 0, 208, 376, 0, 0, 0, 0, 280, 384, 0, 0, 0, 0, 360, 360, 0, 0, 0, 0, 424, 376, 0, 0, 0, 0, 480, 416, 0, 0, 0, 0, 504, 472, 0, 0, 0, 0, 504, 544, 0, 0, 0, 0, 536, 592, 0, 0, 0, 0, 632, 624, 0, 0, 0, 0, 696, 640, 0, 0, 0, 0, 760, 616, 0, 0, 0, 0, 816, 584, 0, 0, 0, 0, 864, 584, 0, 0, 0, 0, 904, 608, 0, 0, 0, 0, 936, 664, 0, 0, 0, 0, 992, 688, 0, 0, 0, 0, 1096, 688, 0, 0, 0, 0, 1144, 664, 0, 0, 0, 0, 1160, 624, 0, 0, 0, 0, 1176, 576, 0, 0, 0, 0, 1152, 504, 0, 0, 0, 0, 1096, 480, 0, 0, 0, 0, 1032, 464, 0, 0, 0, 0, 984, 400, 0, 0, 0, 0, 968, 336, 0, 0, 0, 0, 936, 296, 0, 0, 0, 0, 864, 248, 0, 0, 0, 0, 776, 240, 0, 0, 0, 0, 720, 224, 0, 0, 0, 0, 624, 232, 0, 0, 0, 0, 576, 208, 0, 0, 0, 0, 552, 128, 0, 0, 0, 0, 560, 64, 0, 0, 0, 0, 592, 40, 0, 0, 0, 0, 672, 32, 0, 0, 0, 0, 728, 40, 0, 0, 0, 0, 800, 88, 0, 0, 0, 0, 888, 104, 0, 0, 0, 0, 1064, 120, 0, 0, 0, 0, 1144, 96, 0, 0, 0, 0, 1200, 56, 0, 0, 0, 0, 1224, 16, 0, 0, 0, 0, 1224, -88)
+}
+point_count = 69
+
+[node name="LevelClassic" type="Node2D"]
+script = ExtResource("1_b52wi")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+
+[node name="Floor" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(936, 488)
+scale = Vector2(1, 1.0037)
+texture = ExtResource("1_y8ayr")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="WaterTank" parent="Player" instance=ExtResource("2_qiuac")]
+position = Vector2(664, 352)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Crud" type="Node2D" parent="Enemies"]
+
+[node name="Slime" type="Node2D" parent="Enemies"]
+
+[node name="SlimePath" type="Path2D" parent="Enemies/Slime"]
+curve = SubResource("Curve2D_fdb36")
+
+[node name="SlimePathFollow2D" type="PathFollow2D" parent="Enemies/Slime/SlimePath"]
+position = Vector2(56, 832)
+rotation = -1.44644
+
+[node name="SlimeSpawnTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="ScorePanel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 24.0
+offset_right = 784.0
+offset_bottom = 88.0
+
+[node name="ScoreDisplay" type="Label" parent="Control/ScorePanel"]
+layout_mode = 0
+offset_right = 312.0
+offset_bottom = 64.0
+horizontal_alignment = 1
+
+[node name="HP_Display" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 80.0
+alignment = 1
+
+[node name="HP1" type="TextureRect" parent="Control/HP_Display"]
+layout_mode = 2
+texture = ExtResource("4_s4lt1")
+expand_mode = 3
+
+[node name="HP2" type="TextureRect" parent="Control/HP_Display"]
+layout_mode = 2
+texture = ExtResource("4_s4lt1")
+expand_mode = 3
+
+[node name="HP3" type="TextureRect" parent="Control/HP_Display"]
+layout_mode = 2
+texture = ExtResource("4_s4lt1")
+expand_mode = 3
+
+[connection signal="timeout" from="SlimeSpawnTimer" to="." method="_on_slime_spawn_timer_timeout"]

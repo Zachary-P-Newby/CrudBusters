@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu8i80hc67lvw"]
+
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://Images/crudBustersTestFloor.jpg" id="1_n1xu2"]
+[ext_resource type="Script" path="res://Scenes/how_to_play.gd" id="1_xm01u"]
+
+[node name="HowToPlay" type="Node2D"]
+script = ExtResource("1_xm01u")
+
+[node name="BG" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG"]
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/ParallaxLayer"]
+position = Vector2(832, 304)
+texture = ExtResource("1_n1xu2")
+
+[node name="UIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="UIRoot"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 584.0
+offset_right = 256.0
+offset_bottom = 648.0
+text = "Back
+"
+
+[node name="InstructionsPanel" type="Panel" parent="UIRoot"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 160.0
+offset_right = 840.0
+offset_bottom = 560.0
+
+[node name="Instructions" type="RichTextLabel" parent="UIRoot/InstructionsPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 384.0
+bbcode_enabled = true
+text = "How To Play:
+Earn as many points as possible by using your trusty water Tank to destroy chunks of crud and kill slime monsters.
+But be careful! You have only three hitpoints, and it's game over once you run out!
+
+Controls:
+Use the Up and Down arrows to move forward and backward. Use the Left and right arrows to turn left and right. Press the space bar to shoot bubbles to destroy the crud."
+
+[connection signal="pressed" from="UIRoot/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://c018y3mckdxyf"]
+
+[ext_resource type="Script" path="res://Main Menu.gd" id="1_oax06"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://Images/crudBustersTestFloor.jpg" id="2_0yfpq"]
+[ext_resource type="Texture2D" uid="uid://b4xavkklmvjgc" path="res://Images/crudBustersLogo.png" id="3_otgyb"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_oax06")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="BGLayer" type="ParallaxLayer" parent="Background"]
+
+[node name="Backdrop" type="Sprite2D" parent="Background/BGLayer"]
+position = Vector2(640, 360)
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("2_0yfpq")
+
+[node name="UIRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 488.0
+offset_right = 848.0
+offset_bottom = 672.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="UIRoot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Highscores" type="Button" parent="UIRoot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Highscores"
+
+[node name="How to Play" type="Button" parent="UIRoot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "How to Play"
+
+[node name="Quit" type="Button" parent="UIRoot/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(640, 232)
+scale = Vector2(1.3, 1.333)
+texture = ExtResource("3_otgyb")
+
+[connection signal="pressed" from="UIRoot/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UIRoot/VBoxContainer/Highscores" to="." method="_on_highscores_pressed"]
+[connection signal="pressed" from="UIRoot/VBoxContainer/How to Play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="UIRoot/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

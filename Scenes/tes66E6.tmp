@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://vp4v1v1ppa1g"]
+
+[ext_resource type="Script" path="res://levels/test_floor.gd" id="1_lxumc"]
+[ext_resource type="Texture2D" uid="uid://dhbysxan0o3d8" path="res://crudBustersTestFloor.jpg" id="1_q3nfe"]
+[ext_resource type="PackedScene" uid="uid://uamxr47sdlge" path="res://Player/WaterTank.tscn" id="2_m3nwe"]
+[ext_resource type="PackedScene" uid="uid://csaq0kbjvsun6" path="res://Enemies/large_crud.tscn" id="3_7bpgg"]
+[ext_resource type="PackedScene" uid="uid://do7veu0aks81d" path="res://Enemies/medium_crud.tscn" id="3_iybuh"]
+
+[node name="TestFloor" type="Node2D"]
+script = ExtResource("1_lxumc")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="BGLayer" type="ParallaxLayer" parent="Background"]
+
+[node name="Backdrop" type="Sprite2D" parent="Background/BGLayer"]
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_q3nfe")
+
+[node name="Player" type="Node" parent="."]
+
+[node name="WaterTank" parent="Player" instance=ExtResource("2_m3nwe")]
+position = Vector2(552, 360)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="LargeCrud" parent="." instance=ExtResource("3_7bpgg")]
+position = Vector2(832, 448)
+
+[node name="MediumCrud" parent="." instance=ExtResource("3_iybuh")]
+position = Vector2(352, 384)
+speed = 150
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 224.0
+offset_bottom = 96.0
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_right = 168.0
+offset_bottom = 40.0
+text = "Health:"

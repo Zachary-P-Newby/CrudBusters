@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds685omix0oss"]
+
+[ext_resource type="Script" path="res://Enemies/CrudBase.gd" id="1_5cxik"]
+[ext_resource type="Texture2D" uid="uid://4e8rlny4xy30" path="res://Enemies/crud3.png" id="2_dl8br"]
+[ext_resource type="Script" path="res://Components/Health.gd" id="3_c2voc"]
+[ext_resource type="Script" path="res://Components/ScreenWrap.gd" id="5_dnxis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1maiy"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57721"]
+radius = 32.0
+
+[node name="SmallCrud" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_5cxik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1maiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1.90735e-06)
+scale = Vector2(0.440367, 0.440367)
+texture = ExtResource("2_dl8br")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_c2voc")
+
+[node name="ScreenWrap" type="Node2D" parent="."]
+script = ExtResource("5_dnxis")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="HitboxCollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_57721")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

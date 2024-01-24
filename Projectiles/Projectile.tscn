@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pc203j7lo4oi"]
+
+[ext_resource type="Script" path="res://Projectiles/Projectile.gd" id="1_0uc08"]
+
+[node name="Projectile" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_0uc08")
