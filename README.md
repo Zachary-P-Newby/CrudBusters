@@ -6,6 +6,9 @@ In it, players control an bubble shooting tank and seek destroy giant chunks of 
 
 
 ## How to Play
+
+__Download *Crud_Busters.exe* and run the file to play the game.__
+
 Earn as many points as possible by using your trusty water Tank to destroy chunks of crud and kill slime monsters.
 But be careful! You have only three hitpoints, and it's game over once you run out!
 
